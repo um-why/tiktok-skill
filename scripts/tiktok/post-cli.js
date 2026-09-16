@@ -23,6 +23,7 @@ const SCHEMA = {
       key: "sort",
       type: "number",
       default: 0,
+      transform: (v) => Number(v),
       desc: "排序依据, 0: 最新(默认), 1: 最热",
     },
     "--limit": {
