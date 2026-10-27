@@ -50,7 +50,7 @@
 
 ## 4. ⚡ 30 秒上手
 
-> **前置（只需做一次）**：通过微信 `13395823479`（备注"TikTok 技能"）申请 Token，或到 [guaikei.com](https://www.guaikei.com) 自助开通，然后配置环境变量：
+> **前置（只需做一次）**：通过微信 `13395823479`（备注"TikTok 技能"）申请 Token，或到 [TikTok 洞察与竞品分析助手官网](https://www.guaikei.com) 自助开通，然后配置环境变量：
 >
 > ```bash
 > # Windows
@@ -192,7 +192,7 @@ A：支持。stdout 是纯 JSON、退出码语义明确，可直接被脚本或 
 ## 9. 💳 计费与支持
 
 - **计费**：按 API 调用量计费，官方渠道开通，用量透明可查；**失败调用不计费**。
-- **开通**：微信 `13395823479`（备注"TikTok 技能"），或 [guaikei.com](https://www.guaikei.com) 自助开通。
+- **开通**：微信 `13395823479`（备注"TikTok 技能"），或 [TikTok关键词搜索SKILL](https://www.guaikei.com) 自助开通。
 - **技术支持**：微信同上，支持参数调试、场景方案咨询与定制需求。
 - **更新日志**：[references/changelog.md](references/changelog.md)
 

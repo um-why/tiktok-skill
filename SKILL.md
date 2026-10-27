@@ -89,7 +89,7 @@ metadata:
 
 ## 0. 🧭 每次按这个顺序执行
 
-1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 https://www.guaikei.com 开通，不要先跑一遍试探。
+1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 [TikTok 洞察与竞品分析助手官网](https://www.guaikei.com) 开通，不要先跑一遍试探。
 2. 在本技能根目录执行 `node scripts/tiktok/<命令>.js`。
 3. stderr 出现「处理中」表示任务还在跑。等进程自己退出，再读 stdout 的最后一份 JSON。不要把 stderr 或整份 JSON 念给用户。
 4. 按「4. 📦 读结果」的退出码表决定：改参数再试、告诉用户，或停止。
