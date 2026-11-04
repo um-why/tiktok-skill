@@ -24,7 +24,8 @@
 
 ### P1
 
-- [ ] **P-02 / P-03** 包月 limit 与命名错误码（`MONTHLY_LIMIT` 等）+ `next_action`
+- [x] **P-02** 包月 Token 上限与文档冲突（`14→PLAN_LIMIT`；双上限写进 SKILL/readme/options；版本 1.1.1）
+- [ ] **P-03** 其余数字错误码命名（`15/16` 余额等）+ `next_action`
 - [ ] **A-05** 消除 sort 同号异义（文档强化或字符串枚举）
 - [ ] **A-06 / A-07 / A-09** 信封增强；`--agent`（无 Banner/ANSI、compact JSON）
 - [ ] **A-08** Cursor / Codex / Workbuddy 适配说明
@@ -34,7 +35,7 @@
 - [ ] **B-06 / A-13** URL/关键词规则与 MCP 对齐
 - [ ] **E-01 / E-02** 单测 + CI；`GUAIKEI_BASE_URL` 可覆盖
 - [ ] **S-01** 企业向数据外发说明
-- [ ] **P-05** 支持手机号移出 Skill 正文
+- [x] **P-05** 支持手机号移出 Skill 正文（仅留官网；不升版本号）
 
 ### P2
 
@@ -54,8 +55,8 @@
 | 优先级 | 条目约数 | 已完成 |
 | --- | ---: | ---: |
 | P0 | 5 | 0 |
-| P1 | 14 | 0 |
-| P2 | 6 | 0 |
+| P1 | 15 | 1（P-02） |
+| P2 | 6 | 1（P-05） |
 | P3 | 1 组 | 0 |
 
 ---
@@ -105,10 +106,10 @@ Skill 在「CLI 契约、失败即停、stdout 信封、路由表」上已经比
 | ID | Pri | 状态 | 问题 | 影响 | 证据 / 位置 |
 | --- | --- | --- | --- | --- | --- |
 | P-01 | P0 | open | Token 开通依赖微信/官网自助，Skill 内无引导完成态检测以外的「一键开通」 | 大众用户装完技能就卡死；Agent 只能复读官网链接 | `SKILL.md` §0、`readme.md` §4 |
-| P-02 | P1 | open | 包月 limit 上限（搜/作品 30、评论 40）与 CLI 允许 1–10000 落差大 | 模型常先开大 limit → errcode 14 → 多一轮失败 | `search-cli` help、后端 `Create*Task` type==0 |
-| P-03 | P1 | open | 计费/余额错误码仍是 `"14"|"15"|"16"` 等数字，跨接口含义还不完全一致 | 弱模型无法稳定映射「降 limit / 去充值 / 等一下」 | `SKILL.md` 退出码表；`app/tiktok/search.go` vs `post.go` |
+| P-02 | P1 | done | 包月 limit 上限（搜/作品 30、评论 40）与 CLI 允许 1–10000 落差大 | 模型常先开大 limit → errcode 14 → 多一轮失败 | 2026-11-04：对齐 douyin-search-claw；`backendCodes.js` 映射 `14→PLAN_LIMIT`；文档双上限；v1.1.1 |
+| P-03 | P1 | open | 计费/余额错误码仍是 `"15"|"16"` 等数字（`14` 已映射），跨接口含义不完全一致 | 弱模型无法稳定映射「去充值 / 等一下」；缺 `next_action` | `SKILL.md` 退出码表；`app/tiktok/search.go` vs `post.go` |
 | P-04 | P2 | open | 价值主张偏「给 AI 的手」，但缺少「装完 60 秒看到第一条结果」的 onboarding 脚本 | 转化漏斗长 | 无 `scripts/doctor.js` / smoke |
-| P-05 | P2 | open | 支持微信手机号写进 Skill 正文 | 隐私、骚扰面、企业合规观感差 | `SKILL.md` frontmatter / §5 |
+| P-05 | P2 | done | 支持微信手机号写进 Skill 正文 | 隐私、骚扰面、企业合规观感差 | 2026-11-04：已从 SKILL/readme 去掉；仅留官网；不升版本 |
 | P-06 | P3 | open | 命名三套：`tiktok-creator-videos` / `tiktok-skill` / 文案「洞察助手」 | 目录、registry、用户口口相传易乱 | `SKILL.md` name vs `package.json` |
 
 ### 2.2 Agent / 多模型可用性
@@ -307,3 +308,5 @@ Skill 在「CLI 契约、失败即停、stdout 信封、路由表」上已经比
 | --- | --- | --- |
 | 2026-11-04 | Cursor Agent 审查 | 初版：问题全量 + 优化路线 + 多模型策略 |
 | 2026-11-04 | — | 提升为项目根目录 `todo.md`（合并跟踪清单；`docs/archive/` 改为指向本文件） |
+| 2026-11-04 | — | P-02 落地（对齐 douyin-search-claw）：`PLAN_LIMIT` + 文档双上限；版本 1.1.1 |
+| 2026-11-04 | — | P-05：移除 SKILL/readme 中微信手机号，仅保留官网；不升版本 |
