@@ -25,7 +25,7 @@
 ### P1
 
 - [x] **P-02** 包月 Token 上限与文档冲突（`14→PLAN_LIMIT`；双上限写进 SKILL/readme/options；版本 1.1.1）
-- [ ] **P-03** 其余数字错误码命名（`15/16` 余额等）+ `next_action`
+- [x] **P-03** 其余数字错误码命名（`15/16` 余额等）→ `INSUFFICIENT_BALANCE` / `RATE_LIMITED` / `DAILY_LIMIT`（`next_action` 仍可选）
 - [ ] **A-05** 消除 sort 同号异义（文档强化或字符串枚举）
 - [ ] **A-06 / A-07 / A-09** 信封增强；`--agent`（无 Banner/ANSI、compact JSON）
 - [ ] **A-08** Cursor / Codex / Workbuddy 适配说明
@@ -107,7 +107,7 @@ Skill 在「CLI 契约、失败即停、stdout 信封、路由表」上已经比
 | --- | --- | --- | --- | --- | --- |
 | P-01 | P0 | open | Token 开通依赖微信/官网自助，Skill 内无引导完成态检测以外的「一键开通」 | 大众用户装完技能就卡死；Agent 只能复读官网链接 | `SKILL.md` §0、`readme.md` §4 |
 | P-02 | P1 | done | 包月 limit 上限（搜/作品 30、评论 40）与 CLI 允许 1–10000 落差大 | 模型常先开大 limit → errcode 14 → 多一轮失败 | 2026-11-04：对齐 douyin-search-claw；`backendCodes.js` 映射 `14→PLAN_LIMIT`；文档双上限；v1.1.1 |
-| P-03 | P1 | open | 计费/余额错误码仍是 `"15"|"16"` 等数字（`14` 已映射），跨接口含义不完全一致 | 弱模型无法稳定映射「去充值 / 等一下」；缺 `next_action` | `SKILL.md` 退出码表；`app/tiktok/search.go` vs `post.go` |
+| P-03 | P1 | done | 计费/余额/频控/日限映射为稳定码（errmsg 优先；搜索 16/频控 1 特例） | 弱模型可分支；`next_action` 仍可选 | 2026-11-09 v1.1.2 |
 | P-04 | P2 | open | 价值主张偏「给 AI 的手」，但缺少「装完 60 秒看到第一条结果」的 onboarding 脚本 | 转化漏斗长 | 无 `scripts/doctor.js` / smoke |
 | P-05 | P2 | done | 支持微信手机号写进 Skill 正文 | 隐私、骚扰面、企业合规观感差 | 2026-11-04：已从 SKILL/readme 去掉；仅留官网；不升版本 |
 | P-06 | P3 | open | 命名三套：`tiktok-creator-videos` / `tiktok-skill` / 文案「洞察助手」 | 目录、registry、用户口口相传易乱 | `SKILL.md` name vs `package.json` |
@@ -310,3 +310,4 @@ Skill 在「CLI 契约、失败即停、stdout 信封、路由表」上已经比
 | 2026-11-04 | — | 提升为项目根目录 `todo.md`（合并跟踪清单；`docs/archive/` 改为指向本文件） |
 | 2026-11-04 | — | P-02 落地（对齐 douyin-search-claw）：`PLAN_LIMIT` + 文档双上限；版本 1.1.1 |
 | 2026-11-04 | — | P-05：移除 SKILL/readme 中微信手机号，仅保留官网；不升版本 |
+| 2026-11-14 | — | P1-10 方向 A：faq + 双壳例；版本 1.1.3 |
